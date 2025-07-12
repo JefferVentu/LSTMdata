@@ -3,7 +3,7 @@ import numpy as np
 from tensorflow.keras.models import load_model
 
 app = Flask(__name__)
-model = load_model("modelo_lstm_stock.h5")  # Asegúrate que esté en la misma carpeta
+model = load_model("modelo_lstm_stock.keras")  # Asegúrate que esté en la misma carpeta
 
 @app.route("/predict", methods=["POST"])
 def predict():
