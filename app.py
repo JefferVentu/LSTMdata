@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import numpy as np
 from tensorflow.keras.models import load_model
+import os
 
 app = Flask(__name__)
 model = load_model("modelo_lstm_stock.keras")  # Asegúrate que esté en la misma carpeta
@@ -33,6 +34,6 @@ def predict():
     except Exception as e:
         return jsonify({"error": str(e)})
 
-# Render detecta automáticamente si usas gunicorn
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    port = int(os.environ.get("PORT", 5000))  # ⚠️ Aquí está el cambio importante
+    app.run(host="0.0.0.0", port=port)
